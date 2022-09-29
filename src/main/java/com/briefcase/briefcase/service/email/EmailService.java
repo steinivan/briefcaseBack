@@ -2,6 +2,7 @@
 package com.briefcase.briefcase.service.email;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -12,7 +13,7 @@ public class EmailService {
     @Autowired
     private JavaMailSender mailSender;
     
-    public ResponseEntity<?> sendEmail(String to, String subject, String content) {
+    public ResponseEntity<String> sendEmail(String to, String subject, String content) {
 
         SimpleMailMessage email = new SimpleMailMessage();
 
@@ -21,6 +22,8 @@ public class EmailService {
         email.setText(content);
 
         mailSender.send(email);
-        return ResponseEntity.ok("email enviado con exito");
+        return new ResponseEntity<>(
+      "Email enviado con exito", 
+                HttpStatus.OK);
     }
 }

@@ -19,10 +19,9 @@ public class controllEmail {
     private EmailService service;
     
     @PostMapping("/send")
-    public String send(@RequestBody EmailModel email){
+    public void send(@RequestBody EmailModel email){
         System.out.println(email.getEmail());
         String content = email.getMessage().concat("\n numero de contacto: " + email.getPhone());
-        String dataEmail = service.sendEmail(email.getEmail(), email.getName(), content);
-        return dataEmail;
+        service.sendEmail(email.getEmail(), email.getName(), content);
     }
 }
