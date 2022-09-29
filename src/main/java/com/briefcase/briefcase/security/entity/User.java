@@ -1,7 +1,6 @@
 
 package com.briefcase.briefcase.security.entity;
 
-import java.util.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
