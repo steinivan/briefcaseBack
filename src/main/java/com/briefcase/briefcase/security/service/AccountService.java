@@ -17,7 +17,6 @@ public class AccountService implements IAccountService{
     @Override
     public User signUser(SignInRequest user){
         Optional<User> users = findEmail(repository.findAll(),user);
-//        if(users.isEmpty())return null;
         return users.get();
     }
     Optional<User> findEmail(List<User> elem, SignInRequest user){
