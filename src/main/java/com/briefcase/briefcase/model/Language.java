@@ -19,6 +19,8 @@ public class Language {
     @JsonIgnore
     @ManyToOne
     private Type type;
+    
+    
     public Language() {
     }
 

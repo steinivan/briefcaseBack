@@ -3,7 +3,6 @@ package com.briefcase.briefcase.controll;
 
 import com.briefcase.briefcase.model.Language;
 import com.briefcase.briefcase.model.LanguageDTO;
-import com.briefcase.briefcase.model.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +26,7 @@ public class controllLanguage {
     
     @GetMapping
     public List<LanguageDTO> view(){
+        System.out.println(service.view());
     return service.view();
     }
     @GetMapping("/{id}")

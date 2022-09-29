@@ -1,8 +1,6 @@
 
 package com.briefcase.briefcase.service;
 
-import com.briefcase.briefcase.model.Language;
-import com.briefcase.briefcase.model.LanguageDTO;
 import com.briefcase.briefcase.model.Type;
 import com.briefcase.briefcase.model.TypeDTO;
 import com.briefcase.briefcase.repository.repoLanguage;
