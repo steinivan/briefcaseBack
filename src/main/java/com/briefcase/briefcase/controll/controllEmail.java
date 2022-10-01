@@ -20,8 +20,9 @@ public class controllEmail {
     
     @PostMapping("/send")
     public void send(@RequestBody EmailModel email){
+        String emailTo = "ivanuniversidad2020@outlook.com";
         System.out.println(email.getEmail());
-        String content = email.getMessage().concat("\n numero de contacto: " + email.getPhone());
-        service.sendEmail(email.getEmail(), email.getName(), content);
+        String content = email.getMessage().concat("\n numero de contacto: " + email.getPhone() + " from: " + email.getEmail());
+        service.sendEmail(emailTo, email.getName(), content);
     }
 }
