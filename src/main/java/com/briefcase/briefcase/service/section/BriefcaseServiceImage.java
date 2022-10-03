@@ -1,20 +1,16 @@
 
 package com.briefcase.briefcase.service.section;
 
-import com.briefcase.briefcase.controll.controllSection;
 import com.briefcase.briefcase.model.Section;
 import com.briefcase.briefcase.model.imageSection;
 import com.briefcase.briefcase.repository.repoImage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.briefcase.briefcase.repository.repoSection;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -72,24 +68,9 @@ public class BriefcaseServiceImage implements IBriefcaseServiceImage {
         repositoryImage.save(newFile);
         return imageBefore.getName();
     }
-//    @Override
-//    public String create(Section section,MultipartFile file){
-//        Section nameFile = findSection(section.getName());
-//        imageSection newFile = new imageSection();
-//        newFile.setName(file.getOriginalFilename());
-//        newFile.setSection(nameFile);
-//        imageSection imageBefore = findImageBefore(nameFile);
-//        System.out.println("imagen = " + imageBefore.getName());
-//        repositoryImage.delete(imageBefore);
-//        repositoryImage.save(newFile);
-//        return imageBefore.getName();
-//    }
     @Override
     public Resource findImage(String section){
-//        Section sectionObj = findSection(section);
-//        imageSection img = findImageBefore(sectionObj);
         try {
-//            Path file = root.resolve(img.getName());
             Path file = root.resolve(section);
             Resource resource = new UrlResource(file.toUri());
             System.out.println(resource.getFilename());

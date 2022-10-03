@@ -5,8 +5,6 @@ import com.briefcase.briefcase.security.dto.SignInRequest;
 import com.briefcase.briefcase.security.dto.UserRequest;
 import com.briefcase.briefcase.security.entity.User;
 import com.briefcase.briefcase.security.service.AccountService;
-import java.util.Objects;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
@@ -25,12 +23,8 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<?> signin(@RequestBody SignInRequest signInRequest) {
         UserRequest res = new UserRequest();
-        User dataUser = service.signUser(signInRequest);
-                
-        if(Objects.isNull(dataUser)){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("email invalid");
-        }
-        else{
+        try{
+            User dataUser = service.signUser(signInRequest);
             if(dataUser.getPassword().equals(signInRequest.getPassword()) ){
                 res.setId(dataUser.getId());
                 res.setUsername(dataUser.getUsername());
@@ -39,6 +33,9 @@ public class AuthController {
             } else {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("password invalid");
             } 
+        }
+        catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("email invalid");
         }
     }
 

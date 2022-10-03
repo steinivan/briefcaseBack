@@ -2,21 +2,15 @@
 package com.briefcase.briefcase.controll;
 
 import com.briefcase.briefcase.model.FileModel;
-import com.briefcase.briefcase.model.Language;
-import com.briefcase.briefcase.model.LanguageDTO;
 import com.briefcase.briefcase.model.Section;
-import com.briefcase.briefcase.model.imageSection;
 import com.briefcase.briefcase.service.section.IBriefcaseServiceImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.briefcase.briefcase.service.section.IBriefcaseServiceSection;
 import org.springframework.http.HttpStatus;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -42,8 +36,6 @@ import java.util.stream.Collectors;
 public class controllSection {
     @Autowired
     private IBriefcaseServiceImage serviceImg;
-//    @Autowired
-//    private IBriefcaseServiceSection service;
 
     @PostMapping("/image/upload")
     public void createImage(@RequestParam("file") MultipartFile multiPartFile,@RequestParam("section") String section){
@@ -51,19 +43,7 @@ public class controllSection {
         Section sectionName = gson.fromJson(section, Section.class);
         Path directoryImage = Paths.get("src//main//resources//static/image/" + sectionName.getName());
         String absolutePath = directoryImage.toFile().getAbsolutePath();
-//        byte[] byteImg;
-//        try {
-//            byteImg = multiPartFile.getBytes();
-//            Path completePath = Paths.get(absolutePath + "//" + multiPartFile.getOriginalFilename());
-//            String nameFileBD = 
         serviceImg.create(sectionName,multiPartFile);
-//            Path deletePath = Paths.get(absolutePath + "//" + nameFileBD);
-//            cleanImages(deletePath);
-//            Files.write(completePath, byteImg);
-//        } catch (IOException ex) {
-//            System.out.println("fail");
-//            Logger.getLogger(controllSection.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }
     @GetMapping("/image/find/{section}")
     public ResponseEntity<Resource> findImage(@PathVariable String section) throws IOException{
